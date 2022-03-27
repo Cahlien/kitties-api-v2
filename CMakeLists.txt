@@ -13,16 +13,16 @@ find_package(SQLite3            REQUIRED)
 
 add_library(
         ${project_name}-lib
-        advisors/error_handler.cpp
-        configs/app_component.hpp
-        configs/database_component.hpp
-        configs/swagger_component.hpp
-        controllers/kitty_controller.cpp
-        dtos/status.hpp
-        entities/kitty_entity.hpp
-        models/page.hpp
-        repos/kitty_repository.hpp
-        services/kitty_service.cpp
+        src/advisors/error_handler.cpp
+        src/configs/app_component.hpp
+        src/configs/database_component.hpp
+        src/configs/swagger_component.hpp
+        src/controllers/kitty_controller.hpp
+        src/dtos/status.hpp
+        src/entities/kitty_entity.hpp
+        src/models/page.hpp
+        src/repos/kitty_repository.hpp
+        src/services/kitty_service.cpp
 )
 target_include_directories(${project_name}-lib PRIVATE src src/include)
 target_link_libraries(
@@ -42,6 +42,7 @@ add_definitions(
 
 if(CMAKE_SYSTEM_NAME MATCHES Linux)
     find_package(Threads REQUIRED)
+    target_link_libraries(${project_name}-lib INTERFACE Threads::Threads ${CMAKE_DL_LIBS})
 endif()
 
 add_executable(${project_name}.exe src/app.cpp)
@@ -51,11 +52,11 @@ add_dependencies(${project_name}.exe ${project_name}-lib)
 
 add_executable(
         ${project_name}-test
-        test_client.hpp
-        config/test_component.hpp
-        config/test_database_component.hpp
-        tests.cpp
-        tests/kitty_controller_test.cpp
+        test/app/test_client.hpp
+        test/app/config/test_component.hpp
+        test/app/config/test_database_component.hpp
+        test/tests.cpp
+        test/tests/kitty_controller_test.cpp
 )
 target_include_directories(
         ${project_name}-test
