@@ -35,7 +35,7 @@ public:
                     "  </head>"
                     "  <body>"
                     "    <p>Welcome to the Kitties API v2 by the Developers Crowell!</p>"
-                    "    <a href='swagger/ui/>Checkout Swagger-UI Page</a>"
+                    "    <a href='swagger/ui' />Checkout Swagger-UI Page</a>"
                     "  </body>"
                     "</html>";
 

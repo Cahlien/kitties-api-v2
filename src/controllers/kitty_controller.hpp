@@ -75,7 +75,7 @@ public:
         info->addResponse<Object<StatusDTO>>(Status::CODE_500, "application/json");
     }
     ENDPOINT(
-            "GET", "kitties*",
+            "GET", "kitties",
             get_kitties,
             QUERY(UInt32, offset, "offset", 0U),
             QUERY(UInt32, limit, "limit", 10U)
