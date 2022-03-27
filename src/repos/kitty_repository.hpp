@@ -28,36 +28,35 @@ public:
     QUERY(add_kitty,
           "INSERT INTO Kitties"
           "(name, surname, favorite) VALUES"
-          "(:kitty.name, :kitty.surname, :kitty.favorte);",
+          "(:kitty.name, :kitty.surname, :kitty.favorite);",
           PARAM(oatpp::Object<KittyEntity>, kitty)
-          );
+          )
 
     QUERY(update_kitty,
-          "UPDATE Kitties"
+          "UPDATE `Kitties`"
           "SET "
-          "name=:kitty.name, "
-          "surname=:kitty.surname, "
-          "favorite=:kitty.favorite "
+          " `name`=:kitty.name, "
+          " `surname`=:kitty.surname, "
+          " `favorite`=:kitty.favorite "
           "WHERE "
-          "id=:kitty.id;",
-          PARAM(oatpp::Object<KittyEntity>, kitty)
-          );
+          " `id`=:kitty.id;",
+          PARAM(oatpp::Object<KittyEntity>, kitty))
 
     QUERY(get_by_id,
           "SELECT * FROM KITTIES WHERE id=:id",
           PARAM(oatpp::Int32, id)
-          );
+          )
 
     QUERY(get_all,
           "SELECT * FROM Kitties LIMIT :limit OFFSET :offset;",
           PARAM(oatpp::UInt32, offset),
           PARAM(oatpp::UInt32, limit)
-          );
+          )
 
     QUERY(delete_by_id,
           "DELETE FROM Kitties WHERE id=:id;",
           PARAM(oatpp::Int32, id)
-          );
+          )
 };
 
 #include OATPP_CODEGEN_END(DbClient)

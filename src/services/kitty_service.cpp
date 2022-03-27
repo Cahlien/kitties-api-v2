@@ -1,3 +1,4 @@
+#include <iostream>
 #include "kitty_service.h"
 #include "entities.h"
 
@@ -12,7 +13,9 @@ oatpp::Object<KittyEntity> KittyService::add_kitty(const oatpp::Object<KittyEnti
 
 oatpp::Object<KittyEntity> KittyService::update_kitty(const oatpp::Object<KittyEntity>& kitty)
 {
+    std::cout << "Inside KittyService::update_kitty\n";
     auto result{kitty_repository->update_kitty(kitty)};
+    std::cout << result;
     OATPP_ASSERT_HTTP(result->isSuccess(), Status::CODE_500, result->getErrorMessage());
     return get_kitty_by_id(kitty->id);
 }

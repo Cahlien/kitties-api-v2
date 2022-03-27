@@ -5,6 +5,7 @@
 #ifndef KITTIES02_KITTY_CONTROLLER_HPP
 #define KITTIES02_KITTY_CONTROLLER_HPP
 
+#include <iostream>
 #include "kitty_service.h"
 
 #include "oatpp-1.3.0/oatpp/oatpp/web/server/api/ApiController.hpp"
@@ -52,6 +53,11 @@ public:
             kitty_entity))
     {
         kitty_entity->id = kitty_id;
+        std::cout << kitty_entity->id << std::endl;
+
+        std::cout << static_cast<std::string>(kitty_entity->name) << std::endl;
+
+
         return createDtoResponse(Status::CODE_200, kitty_service.update_kitty(kitty_entity));
     }
 
