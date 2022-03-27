@@ -28,18 +28,18 @@ public:
     QUERY(add_kitty,
           "INSERT INTO Kitties"
           "(name, surname, favorite) VALUES"
-          "(:kitty.name, :kitty.surname, :kitty.favorte);",
+          "(:kitty.name, :kitty.surname, :kitty.favorite);",
           PARAM(oatpp::Object<KittyEntity>, kitty)
           );
 
     QUERY(update_kitty,
-          "UPDATE Kitties"
+          "UPDATE `Kitties`"
           "SET "
-          "name=:kitty.name, "
-          "surname=:kitty.surname, "
-          "favorite=:kitty.favorite "
+          " `name`=:kitty.name, "
+          " `surname`=:kitty.surname, "
+          " `favorite`=:kitty.favorite "
           "WHERE "
-          "id=:kitty.id;",
+          " `id`=:kitty.id;",
           PARAM(oatpp::Object<KittyEntity>, kitty)
           );
 
