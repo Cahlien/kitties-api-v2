@@ -42,6 +42,7 @@ add_definitions(
 
 if(CMAKE_SYSTEM_NAME MATCHES Linux)
     find_package(Threads REQUIRED)
+    target_link_libraries(${project_name}-lib INTERFACE Threads::Threads ${CMAKE_DL_LIBS})
 endif()
 
 add_executable(${project_name}.exe src/app.cpp)
