@@ -5,12 +5,13 @@
 #ifndef KITTIES02_KITTY_SERVICE_H
 #define KITTIES02_KITTY_SERVICE_H
 
+#include "repositories.h"
 #include "dtos.h"
 #include "models.h"
-#include "repositories.h"
 
-#include "oatpp-1.3.0/oatpp/oatpp/web/protocol/http/Http.hpp"
-#include "oatpp-1.3.0/oatpp/oatpp/core/macro/component.hpp"
+
+#include "oatpp/web/protocol/http/Http.hpp"
+#include "oatpp/core/macro/component.hpp"
 
 class KittyService
 {
@@ -19,8 +20,8 @@ public:
 
     oatpp::Object<KittyEntity> update_kitty(const oatpp::Object<KittyEntity>&);
 
-    oatpp::Object<KittyEntity> get_kitty_by_id(const oatpp::Int32&, const
-        oatpp::provider::ResourceHandle<oatpp::orm::Connection>& = nullptr);
+    oatpp::Object<KittyEntity> get_kitty_by_id(const oatpp::Int32& id, const
+        oatpp::provider::ResourceHandle<oatpp::orm::Connection>& connection = nullptr);
 
     oatpp::Object<Page<oatpp::Object<KittyEntity>>> get_kitties(const oatpp::UInt32&, const oatpp::UInt32&);
 

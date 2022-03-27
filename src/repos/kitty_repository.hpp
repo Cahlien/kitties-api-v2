@@ -10,15 +10,16 @@
 #include "oatpp-sqlite/orm.hpp"
 
 #include OATPP_CODEGEN_BEGIN(DbClient)
+
 class KittyRepository : public oatpp::orm::DbClient
 {
 public:
     explicit KittyRepository(const std::shared_ptr<oatpp::orm::Executor>& executor)
-        : oatpp::orm::Dbclient{executor}
+        : oatpp::orm::DbClient(executor)
     {
         oatpp::orm::SchemaMigration migration{executor};
         migration.addFile(1, DATABASE_MIGRATIONS "/001_init.sql");
-        migation.migrate();
+        migration.migrate();
 
         auto version{executor->getSchemaVersion()};
         OATPP_LOGD("KittyRepository", "Migration - OK. VERSION=%lld.", version)
@@ -39,12 +40,12 @@ public:
           "favorite=:kitty.favorite "
           "WHERE "
           "id=:kitty.id;",
-          PARAM(oatpp::Object<KittyEntity>. kitty)
+          PARAM(oatpp::Object<KittyEntity>, kitty)
           );
 
     QUERY(get_by_id,
-          "SELECT * FROM KITTIES WHERE id=:kitty.id",
-          PARAM(oatpp::Int32, kitty_id)
+          "SELECT * FROM KITTIES WHERE id=:id",
+          PARAM(oatpp::Int32, id)
           );
 
     QUERY(get_all,

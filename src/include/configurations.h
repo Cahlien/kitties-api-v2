@@ -5,8 +5,8 @@
 #ifndef KITTIES02_CONFIGURATIONS_H
 #define KITTIES02_CONFIGURATIONS_H
 
-#include "../src/config/app_component.hpp"
-#include "../src/config/database_component.hpp"
-#include "../src/config/swagger_component.hpp"
+#include "../configs/app_component.hpp"
+#include "../configs/database_component.hpp"
+#include "../configs/swagger_component.hpp"
 
 #endif //KITTIES02_CONFIGURATIONS_H

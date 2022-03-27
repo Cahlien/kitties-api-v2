@@ -13,14 +13,14 @@ class DatabaseComponent
 {
 public:
     OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::provider::Provider<oatpp::sqlite::Connection>>,
-                           db_connection_provider)([[]
-                           {
-                               auto connection_provider{std::make_shared<oatpp::sqlite::ConnectionProvider>
-                                       (DATABASE_FILE)};
+                           db_connection_provider)([]
+    {
+        auto connection_provider{std::make_shared<oatpp::sqlite::ConnectionProvider>
+            (DATABASE_FILE)};
 
-                               return oatpp::sqlite::ConnectionPool::createShared(connection_provider, 10,
-                                                                                  std::chrono::seconds(5));
-                           } ());
+        return oatpp::sqlite::ConnectionPool::createShared(connection_provider, 10,
+                                                              std::chrono::seconds(5));
+       } ());
 
     OATPP_CREATE_COMPONENT(std::shared_ptr<KittyRepository>, kitty_repository)([]
     {

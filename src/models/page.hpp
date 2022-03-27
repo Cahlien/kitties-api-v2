@@ -11,7 +11,7 @@
 template<typename T>
 class Page : public oatpp::DTO
 {
-    DTO_INIT(Page, DTO);
+    DTO_INIT(Page, DTO)
 
     DTO_FIELD(UInt32, offset);
     DTO_FIELD(UInt32, limit);
@@ -20,9 +20,9 @@ class Page : public oatpp::DTO
 
 };
 
-class KittiesPage : public Page<oatpp::Object<KittyEntity>
+class KittiesPage : public Page<oatpp::Object<KittyEntity>>
 {
-    DTO_INIT(KittiesPage, Page<oatpp::Object<KittyEntity>>);
+    DTO_INIT(KittiesPage, Page<oatpp::Object<KittyEntity>>)
 };
 
 #include OATPP_CODEGEN_END(DTO)

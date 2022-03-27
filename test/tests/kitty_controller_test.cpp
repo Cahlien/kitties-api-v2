@@ -7,9 +7,9 @@
 #include "oatpp-1.3.0/oatpp/oatpp/web/client/HttpRequestExecutor.hpp"
 #include "oatpp-1.3.0/oatpp/oatpp-test/web/ClientServerTestRunner.hpp"
 
-#include "kitty_controller.h"
+#include "controllers.h"
 
-#include "test_component.hpp"
+#include "test_configurations.h"
 
 #include <cstdio>
 
