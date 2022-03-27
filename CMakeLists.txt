@@ -17,7 +17,7 @@ add_library(
         src/configs/app_component.hpp
         src/configs/database_component.hpp
         src/configs/swagger_component.hpp
-        src/controllers/kitty_controller.cpp
+        src/controllers/kitty_controller.hpp
         src/dtos/status.hpp
         src/entities/kitty_entity.hpp
         src/models/page.hpp
@@ -52,11 +52,11 @@ add_dependencies(${project_name}.exe ${project_name}-lib)
 
 add_executable(
         ${project_name}-test
-        test_client.hpp
-        config/test_component.hpp
-        config/test_database_component.hpp
-        tests.cpp
-        tests/kitty_controller_test.cpp
+        test/app/test_client.hpp
+        test/app/config/test_component.hpp
+        test/app/config/test_database_component.hpp
+        test/tests.cpp
+        test/tests/kitty_controller_test.cpp
 )
 target_include_directories(
         ${project_name}-test

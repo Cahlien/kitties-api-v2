@@ -19,7 +19,7 @@ ENUM(
 
 class KittyEntity : public oatpp::DTO
 {
-    DTO_INIT(KittyEntity, DTO);
+    DTO_INIT(KittyEntity, DTO)
     DTO_FIELD(Int32, id);
     DTO_FIELD(String, name, "name");
     DTO_FIELD(String, surname, "surname");

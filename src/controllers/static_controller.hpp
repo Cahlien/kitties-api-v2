@@ -20,8 +20,8 @@ public:
     {
     }
 
-    static std::shared_ptr <StaticController>
-        createShared(OATPP_COMPONENT(std::shared_ptr <ObjectMapper>, object_mapper)
+    static std::shared_ptr<StaticController>
+        createShared(OATPP_COMPONENT(std::shared_ptr <ObjectMapper>, object_mapper))
     {
         return std::make_shared<StaticController>(object_mapper);
     }
@@ -39,8 +39,7 @@ public:
                     "  </body>"
                     "</html>";
 
-            // TODO see if this works with braced initialization list
-            auto response{createResponse(Status::CODE_200, html);
+            auto response = createResponse(Status::CODE_200, html);
             response->putHeader(Header::CONTENT_TYPE, "text/html");
 
             return response;

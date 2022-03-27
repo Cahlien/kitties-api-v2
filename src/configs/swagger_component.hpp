@@ -5,8 +5,8 @@
 #ifndef KITTIES02_SWAGGER_COMPONENT_HPP
 #define KITTIES02_SWAGGER_COMPONENT_HPP
 
+#include <oatpp-swagger/Resources.hpp>
 #include "oatpp-swagger/Model.hpp"
-#include "oatpp-swagger/Resource.hpp"
 #include "oatpp-1.3.0/oatpp/oatpp/core/macro/component.hpp"
 
 class SwaggerComponent
@@ -31,7 +31,7 @@ public:
 
     OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::swagger::Resources>, swagger_resources)([]
     {
-        return oatpp::swager::Resources::loadResources(OATPP_SWAGGER_RES_PATH);
+        return oatpp::swagger::Resources::loadResources(OATPP_SWAGGER_RES_PATH);
     } ());
 };
 

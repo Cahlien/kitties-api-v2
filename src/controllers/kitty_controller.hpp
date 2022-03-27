@@ -16,13 +16,13 @@
 class KittyController : public oatpp::web::server::api::ApiController
 {
 public:
-    KittyController(OATPP_COMPONENT(std::shared_ptr<ObjectMapper>, object_mapper))
-        : oatpp::web::server::api::ApiController(object_mapper)
+    explicit KittyController(OATPP_COMPONENT(std::shared_ptr<ObjectMapper>, object_mapper))
+            : oatpp::web::server::api::ApiController{object_mapper}
     {
 
     }
 
-    static std::shred_ptr<KittyController> createShared(OATPP_COMPONENT(std::shared_ptr<ObjectMapper>, object_mapepr))
+    static std::shared_ptr<KittyController> createShared(OATPP_COMPONENT(std::shared_ptr<ObjectMapper>, object_mapper))
     {
         return std::make_shared<KittyController>(object_mapper);
     }
@@ -51,7 +51,7 @@ public:
     ENDPOINT("PUT", "kitties/{kitty_id}", update_kitty, PATH(Int32, kitty_id), BODY_DTO(Object<KittyEntity>,
             kitty_entity))
     {
-        kitty_entitiy->id = kitty_id;
+        kitty_entity->id = kitty_id;
         return createDtoResponse(Status::CODE_200, kitty_service.update_kitty(kitty_entity));
     }
 
@@ -74,22 +74,13 @@ public:
         info->addResponse<Object<StatusDTO>>(Status::CODE_404, "application/json");
         info->addResponse<Object<StatusDTO>>(Status::CODE_500, "application/json");
     }
-    ENDPOINT("GET", "kitties*", get_kitties, REQUEST(std::shared_ptr<IncomingRequest>, request), PATH(String,
-                                                                                                      pathParam,
-                                                                                                      "path-param"))
+    ENDPOINT(
+            "GET", "kitties*",
+            get_kitties,
+            QUERY(UInt32, offset, "offset", 0U),
+            QUERY(UInt32, limit, "limit", 10U)
+            )
     {
-        // TODO see if this works with braced initialization list
-        String tail{request->getPathTail()};
-        OATPP_ASSERT_HTTP(tail, Status::CODE_400, "null query-params");
-
-        // TODO see if this works with braced initialization list
-        auto queryParams{oatpp::network::Url::Parser::parseQueryParams(tail)};
-
-        // TODO see if this works with braced initialization list
-        auto offset{queryParams->get("offset", 0)};
-
-        // TODO see if this works with braced initialization list
-        auto limit{queryParams->get("limit", 10)};
 
         return createDtoResponse(Status::CODE_200, kitty_service.get_kitties(offset, limit));
     }
@@ -107,7 +98,7 @@ public:
     }
 private:
     KittyService kitty_service;
-}
+};
 
 #include OATPP_CODEGEN_END(ApiController)
 
